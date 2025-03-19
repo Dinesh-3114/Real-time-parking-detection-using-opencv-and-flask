@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Parking Status</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script>
+        function updateParkingStatus() {
+            fetch("/parking_status")
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById("total").innerText = data.total;
+                    document.getElementById("empty").innerText = data.empty;
+                    document.getElementById("occupied").innerText = data.occupied;
+                });
+        }
+        setInterval(updateParkingStatus, 2000);
+    </script>
+</head>
+<body>
+    <h1>🚗 Car Parking Status 🚗</h1>
+
+    <div class="status-container">
+        <div class="status-box total">Total Slots: <span id="total">0</span></div>
+        <div class="status-box empty">Empty Slots: <span id="empty">0</span></div>
+        <div class="status-box occupied">Occupied Slots: <span id="occupied">0</span></div>
+
+<button class="view-button" onclick="window.location.href='/view_slots'">👁️ View Parking Spots</button>
+    </div>
+</body>
+</html>

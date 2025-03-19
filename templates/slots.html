@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parking Slot View</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>🚗 Car Parking Slots 🚗</h1>
+
+    <a href="/" class="back-button">Back</a>
+
+
+    <div class="parking-container">
+
+        {% for i in range(71) %}
+            <div class="slot-box {{ slot_status[i] }}" style="top: {{ positions[i][1] }}px; left: {{ positions[i][0] }}px;">
+                {{ i + 1 }}
+            </div>
+        {% endfor %}
+    </div>
+</body>
+</html>
